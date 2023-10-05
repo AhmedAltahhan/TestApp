@@ -10,6 +10,4 @@ Route::middleware(['auth','role:student'])->prefix('student')->group(function ()
     Route::get('/{test}',[TestController::class,'start'])->name('start_test');
     Route::post('/my_result',[TestController::class,'result'])->name('my_result');
     Route::get('/serch_test',[TestController::class,'search']);
-
 });
-

@@ -35,5 +35,6 @@ class AuthController extends Controller
             else
                 return redirect()->route('information.index' , compact('user'));
         }
+        return view('Web.Auth.login');
     }
 }

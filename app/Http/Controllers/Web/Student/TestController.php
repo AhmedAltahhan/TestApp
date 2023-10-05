@@ -24,8 +24,8 @@ class TestController extends Controller
     public function start($id)
     {
         $user = Auth()->user()->id;
-        $results = Result::whereTestId($id)->whereUserId($user)->get();
-        $is_exist = Result::whereTestId($id)->whereUserId($user)-> count();
+        $results = Result::whereId($id)->whereUserId($user)->get();
+        $is_exist = Result::whereId($id)-> count();
         if($is_exist > 0)
             return view('Web.Student.results',compact('results'));
         $questions = $this->testService->question($id);
@@ -36,8 +36,16 @@ class TestController extends Controller
 
     public function result(ResultRequest $request )
     {
+
+        // return $correct = Question::whereTestId($request->test_id)->get();
+        // return $request;
+        // return $request->test_id;
+
         $user = Auth()->user()->id;
+
         $result = $this->testService->results([$user],$request->validated());
+        // return $final_result= $this->testService->results($user,$request->test_id,$result);
+        // return redirect()->route('results');
         $results = Result::whereId($result->id)->get();
         return view('Web.Student.results',compact('results'));
 

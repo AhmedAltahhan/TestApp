@@ -27,6 +27,8 @@
                     @csrf
                     @foreach ($question->answers as $answer )
                     <div class="form-check">
+                        {{-- {{session()->put('user',$answer->name)}} --}}
+                        {{-- {{session()->get('user')}} --}}
                         <input class="form-check-input" type="radio" value="{{$answer->name}}" name="answers[{{$question->id}}]" id="{{$answer->id}}">
                         <label class="form-check-label" for="{{$answer->id}}">
                             {{$answer->name}}

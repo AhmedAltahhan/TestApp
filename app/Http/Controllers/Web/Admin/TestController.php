@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Web\Admin;
 
+use App\Exports\ResultExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchRequest;
 use App\Services\TestService;
 use App\Http\Requests\StoreTestRequest;
 use App\Models\Test;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TestController extends Controller
 {
@@ -63,5 +65,10 @@ class TestController extends Controller
         $tests =  $this->testService->search($request->validated());
         $search = $request->search;
         return view('Web.Admin.Test.index',compact('tests','search'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new ResultExport,'results.xlsx');
     }
 }

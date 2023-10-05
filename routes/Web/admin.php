@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\Admin\ProfileController;
@@ -15,6 +15,6 @@ Route::middleware(['auth','role:admin'])->prefix('admin')->group(function () {
     Route::get('/student',[StudentController::class,'search']);
     Route::get('/question',[QuestionController::class,'search']);
     Route::get('/test',[TestController::class,'search']);
-
+    Route::get('/export_excel',[TestController::class,'export'])->name('export');
 });
 
